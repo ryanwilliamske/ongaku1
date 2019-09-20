@@ -1,5 +1,5 @@
 <div class="bs-example">
-        <div class="card card-image" id="spotlight" style="background-image: url(guitar2.jpg); height:766px;">
+        <div class="card card-image" id="spotlight" style="">
 
 
             <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
