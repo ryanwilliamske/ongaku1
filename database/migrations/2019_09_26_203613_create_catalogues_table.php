@@ -14,7 +14,14 @@ class CreateCataloguesTable extends Migration
     public function up()
     {
         Schema::create('catalogues', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('productId');
+            $table->string('productName');
+            $table->smallInteger('productPrice');
+            $table->longText('prodDescription');
+            $table->unsignedBigInteger('companyId');
+            $table->foreign('companyId')->references('companyId')->
+                on('companies')->
+                onDelete('cascade');
             $table->timestamps();
         });
     }
