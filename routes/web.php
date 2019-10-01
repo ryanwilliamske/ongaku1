@@ -32,7 +32,7 @@ Route::get('/login', function () {
 });
 
 
-
+Route::resource('product','CatalogueController');
 
 Auth::routes();
 

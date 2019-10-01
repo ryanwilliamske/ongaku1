@@ -11,6 +11,7 @@
     </head>
     <body class="">
         @include('inc.navbar')
+        @include('inc.messages')
         @if(Request::is('/'))
             @include('inc.spotlight')
         @endif
