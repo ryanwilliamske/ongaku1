@@ -16,10 +16,10 @@ class CreateRevenuesTable extends Migration
         Schema::create('revenues', function (Blueprint $table) {
             $table->bigIncrements('revenueId');
             $table->string('revenueAmount');
-            $table->unsignedBigInteger('paymentId');
-            $table->foreign('paymentId')->
-                references('paymentId')->on('payments')->
-                onDelete('cascade');
+            // $table->unsignedBigInteger('paymentId');
+            // $table->foreign('paymentId')->
+            //     references('paymentId')->on('payments')->
+            //     onDelete('cascade');
             $table->timestamps();
         });
     }

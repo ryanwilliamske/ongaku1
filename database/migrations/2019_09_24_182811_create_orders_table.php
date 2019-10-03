@@ -16,11 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('orderId');
             $table->dateTime('orderTime');
-            $table->unsignedBigInteger('productId');
-            $table->foreign('productId')->
-                references('productId')->
-                on('catalogues')->
-                onDelete('cascade');
+            // $table->unsignedBigInteger('productId');
+            // $table->foreign('productId')->
+            //     references('productId')->
+            //     on('catalogues')->
+            //     onDelete('cascade');
             $table->timestamps();
         });
     }

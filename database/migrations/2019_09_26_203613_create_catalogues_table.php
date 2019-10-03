@@ -18,10 +18,10 @@ class CreateCataloguesTable extends Migration
             $table->string('productName');
             $table->smallInteger('productPrice');
             $table->longText('prodDescription');
-            $table->unsignedBigInteger('companyId');
-            $table->foreign('companyId')->references('companyId')->
-                on('companies')->
-                onDelete('cascade');
+            // $table->unsignedBigInteger('companyId');
+            // $table->foreign('companyId')->references('companyId')->
+            //     on('companies')->
+            //     onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('companyAddress');
             $table->string('companyCity');
             $table->string('companyEmail');
-            $table->mediumInteger('companyPhone');
+            // $table->mediumInteger('companyPhone');
             $table->timestamps();
         });
     }
