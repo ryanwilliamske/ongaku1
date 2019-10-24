@@ -18,6 +18,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/about">About</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/checkout">Checkout</a>
+      </li>
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Profile</a>
       </li> -->
@@ -31,13 +34,13 @@
       </li> -->
     </ul>
     <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
-    
+
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      
+
     </form>
- 
+
   </div>
 
                     </ul>
@@ -61,11 +64,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/profile">
+                                        My Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

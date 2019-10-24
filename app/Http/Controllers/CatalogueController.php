@@ -16,7 +16,7 @@ class CatalogueController extends Controller
     {
         $products = Catalogue::all();
         return view('products.product_page')->with('product',$products);
-        
+
     }
 
     /**
@@ -37,7 +37,7 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -73,6 +73,38 @@ class CatalogueController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function addToCart($id)
+    {
+        $product = Catalogue::find($id);
+        if (!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    "name" => $product->productName,
+                    "quantity" => 1,
+                    "price" => $product->productPrice,
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added successfully');
+        }
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added successfully');
+        }
+        $cart[$id] = [
+            "name" => $product->productName,
+            "quantity" => 1,
+            "price" => $product->productPrice
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added successfully');
     }
 
     /**

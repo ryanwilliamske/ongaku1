@@ -9,6 +9,6 @@ use App\Catalogue;
     <div class="jumbotron text-center">
     <img src="" alt="Image of {{$product->productName}}" style="width:300px; height:300px;">
         <p>{{$product->prodDescription}}</p>
-        <a href="#" class="btn btn-dark">Add to Cart</a>
+        <a href="/add-to-cart/{{$product->productId}}" class="btn btn-dark">Add to Cart</a>
     </div>
 @endsection
