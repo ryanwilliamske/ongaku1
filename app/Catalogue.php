@@ -2,18 +2,23 @@
 
 namespace App;
 
-use Laravel\Scout\Searchable;
+//use Spatie\Searchable\Searchable;
+//use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Model;
 
 class Catalogue extends Model
+//    implements Searchable
 {
     public $table = 'catalogues';
     public $primaryKey = 'productId';
     public $timestamps = true;
 
-    use Searchable;
-    public function searchableAs()
-    {
-
-    }
+//    public function category(){
+//        return $this->belongsTo('App\ProductCategory');
+//    }
+//    public function getSearchResult(): SearchResult
+//    {
+//        $url = route('');
+//        // TODO: Implement getSearchResult() method.
+//    }
 }

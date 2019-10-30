@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
 use App\Catalogue;
+use Symfony\Component\Console\Input\Input;
 
 class CatalogueController extends Controller
 {
@@ -15,7 +17,8 @@ class CatalogueController extends Controller
     public function index()
     {
         $products = Catalogue::all();
-        return view('products.product_page')->with('product',$products);
+        $company=Company::pluck('companyName','companyId');
+        return view('products.product_page',compact('products','company'));
 
     }
 
@@ -106,6 +109,33 @@ class CatalogueController extends Controller
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added successfully');
     }
+
+    public function search(Request $request){
+//        $this->validate($request,[
+//            'q'=>'',
+//        ]);
+        $search = $request->input('q');
+        $catalogue = Catalogue::where('productName','like','%'. $search .'%')->
+        get();
+        return view('products.searchview')->with('catalogue',$catalogue);
+
+//       $catalogue = Catalogue::where('productName','LIKE'.'%'.$search.'%')->get();
+//        return $search;
+//        if(count($catalogue)>0){
+//           return view('products.searchview')->with('product',$catalogue)->withQuery($search);
+////                return $search.$catalogue;
+//        }else{
+//         return view('products.searchview')->with('alert','Not found, try again');
+//            return "Na";
+//        }
+        //    $search = Input::get('search');
+//    $catalogue = \App\Catalogue::where('productName','LIKE','%'.$search.'%')->get();
+//    if(count($catalogue)>0){
+//        return view('products.searchview')->withDetails($catalogue)->withQuery($search);
+//    }else{
+//        return view('products.searchview')->with('alert','Not found, try again');
+    }
+
 
     /**
      * Remove the specified resource from storage.

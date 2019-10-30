@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -34,7 +36,27 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(session('cart')){
+            $cart = session('cart');
+            if(Auth::guest()){
+                return redirect('login');
+            }else{
+                foreach ($cart as $key => $value) {
+                    $order = new Order;
+                    $order->id = Auth::id();
+    //                $order->orderTime = DateT
+    //                $order->paymentTypeId = 0;
+                    $order->productId = $key;
+                    $order->save();
+                }
+                return view('products.thankyou');
+            }
+        }
+
+
+
+
+
     }
 
     /**

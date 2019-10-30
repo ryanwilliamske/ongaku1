@@ -1,7 +1,8 @@
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+{{--<nav class="navbar navbar-expand-md navbar-dark bg-dark">--}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand logo-h" href="{{ url('/') }}">
                     Ongaku
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -19,7 +20,7 @@
         <a class="nav-link" href="/about">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/checkout">Checkout</a>
+        <a class="nav-link" href="/checkout">Checkout </a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Profile</a>
@@ -35,11 +36,12 @@
     </ul>
     <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <form action="/search" method="post" class="form-inline my-2 my-lg-0">
+            {{csrf_field()}}
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" role="search" name="q" value="{{ request()->input('q') }}" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
 
-    </form>
 
   </div>
 

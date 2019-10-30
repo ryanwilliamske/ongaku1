@@ -43,11 +43,25 @@ Route::get('/profile', function () {
 
 Route::get('/add-to-cart/{id}',
  'CatalogueController@addToCart');
-
-
+Route::any('buy','OrdersController@store');
+Route::any('search','CatalogueController@search');
+//    function (){
+//    $search = Input::get('search');
+//    $catalogue = \App\Catalogue::where('productName','LIKE','%'.$search.'%')->get();
+//    if(count($catalogue)>0){
+//        return view('products.searchview')->withDetails($catalogue)->withQuery($search);
+//    }else{
+//        return view('products.searchview')->with('alert','Not found, try again');
+//    }
+//});
 
 Route::resource('product','CatalogueController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
