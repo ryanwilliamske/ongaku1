@@ -15,6 +15,7 @@
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
       <form action="/buy" method="post" class="needs-validation" novalidate="">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>

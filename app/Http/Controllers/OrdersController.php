@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
 {
@@ -44,11 +45,10 @@ class OrdersController extends Controller
                 foreach ($cart as $key => $value) {
                     $order = new Order;
                     $order->id = Auth::id();
-    //                $order->orderTime = DateT
-    //                $order->paymentTypeId = 0;
                     $order->productId = $key;
                     $order->save();
                 }
+                Session::forget('cart');
                 return view('products.thankyou');
             }
         }

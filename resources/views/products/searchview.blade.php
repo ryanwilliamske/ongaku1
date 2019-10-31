@@ -10,11 +10,9 @@
             @foreach($catalogue as $cat)
 
                 <div class="card">
-                    <img src="" alt="productImage">
+{{--                    <img src="public/images/{{$cat->dp}}" alt="productImage">--}}
                     <div class="card-body">
-                        <h5 class="card-title">{{$cat->productName}}</h5>
-                        <p class="card-text"></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title"><a href="/product/{{$cat->productId}}">{{$cat->productName}}</a></h5>
                     </div>
                 </div>
             @endforeach

@@ -84,6 +84,12 @@ Route::get('/profile', function () {
 
 Route::get('/add-to-cart/{id}',
  'CatalogueController@addToCart');
+
+//Route::get('/remove-item',
+//    function (){
+//
+//    });
+
 Route::any('buy','OrdersController@store');
 Route::any('search','CatalogueController@search');
 //    function (){
