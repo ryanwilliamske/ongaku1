@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('inc.carousel')
+@include('inc.showcase')
 <div class="container marketing text-center">
 
     <div class="container">

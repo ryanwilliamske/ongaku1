@@ -66,7 +66,7 @@ class CatalogueController extends Controller
         $catalogue->prodDescription = $request->input('description');
 //save the Catalogue
         $catalogue->save();
-        return redirect('/companies')->with('success','We\'ll send you an email');
+        return redirect('/companies')->with('success','Your product is now live for sale');
 
     }
 
@@ -143,29 +143,16 @@ class CatalogueController extends Controller
     }
 
     public function search(Request $request){
-//        $this->validate($request,[
-//            'q'=>'',
-//        ]);
+        // $request->validate([
+        //     'q'=>'required|min:3'
+        // ]
+
+        // );
         $search = $request->input('q');
-        $catalogue = Catalogue::where('productName','like','%'. $search .'%')->
+        $catalogue = Catalogue::where('productName','like','%'.$search.'%')->
         get();
         return view('products.searchview')->with('catalogue',$catalogue);
 
-//       $catalogue = Catalogue::where('productName','LIKE'.'%'.$search.'%')->get();
-//        return $search;
-//        if(count($catalogue)>0){
-//           return view('products.searchview')->with('product',$catalogue)->withQuery($search);
-////                return $search.$catalogue;
-//        }else{
-//         return view('products.searchview')->with('alert','Not found, try again');
-//            return "Na";
-//        }
-        //    $search = Input::get('search');
-//    $catalogue = \App\Catalogue::where('productName','LIKE','%'.$search.'%')->get();
-//    if(count($catalogue)>0){
-//        return view('products.searchview')->withDetails($catalogue)->withQuery($search);
-//    }else{
-//        return view('products.searchview')->with('alert','Not found, try again');
     }
 
 
@@ -177,6 +164,12 @@ class CatalogueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cat = Catalogue::where('productId',$id);
+        if($cat != null){
+            $cat->delete();
+            return view('companies.home')->with('success','Deleted!');
+        }else{
+            return view('companies.home')->with('alert','Not deleted');
+        }
     }
 }

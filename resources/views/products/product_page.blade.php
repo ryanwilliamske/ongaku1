@@ -11,7 +11,7 @@ $company = Company::all();
     <div class="jumbotron container">
         <div class="row">
             <div class="col-xl-5">
-                <img src="" alt="Image of {{$product->productName}}"  style="width:300px; height:300px;">
+                <img src="storage/images/{{$product->dp}}" style="width:300px; height:300px;">
             </div>
             <div class="col-xl-5">
                 <h2>Description</h2>

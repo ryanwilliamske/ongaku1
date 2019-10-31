@@ -25,8 +25,8 @@ $comp = Company::all();
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputCity">Product Image</label>
-                <input type="file" class="form-control" id="image">
+                <label for="dp">Product Image</label>
+                <input type="file" name="dp" class="form-control" id="image">
             </div>
             @foreach($comp as $c)
                 @if(($c->id) == $user->id)

@@ -51,6 +51,8 @@ class OrdersController extends Controller
                 Session::forget('cart');
                 return view('products.thankyou');
             }
+        }else{
+            return redirect()->back()->with('error','Please load something onto the cart');
         }
 
 

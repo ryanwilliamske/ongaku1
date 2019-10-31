@@ -6,7 +6,7 @@
     <div class="jumbotron ">
 
         @if(count($catalogue)>1)
-            <h1> {{count($catalogue)}}Results for '{{ request()->input('q') }}' </h1>
+            <h1> {{count($catalogue)}} result(s) loaded when searching for '{{ request()->input('q') }}' </h1>
             @foreach($catalogue as $cat)
 
                 <div class="card">

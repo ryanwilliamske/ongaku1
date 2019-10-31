@@ -7,10 +7,9 @@ $products = Catalogue::all();
     <div class="text-center">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-            <img width="140" height="140" class="rounded-circle" 
+            <img width="100" height="100" class="rounded-circle" 
                 alt="Generic placeholder image" 
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
-            
+                src="storage/images/{{$product->dp}}">
                 <h5 class="card-title">{{$product->productName}}</h5>
                 <!-- <small>{{$product->prodDescription}}</small> -->
                 <a href="/product/{{$product->productId}}" class="btn btn-dark">View More</a>

@@ -89,7 +89,8 @@ Route::get('/add-to-cart/{id}',
 //    function (){
 //
 //    });
-
+Route::get('/delete-item/{id}',
+ 'CatalogueController@destroy');
 Route::any('buy','OrdersController@store');
 Route::any('search','CatalogueController@search');
 //    function (){
