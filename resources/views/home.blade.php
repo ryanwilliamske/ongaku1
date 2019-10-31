@@ -6,9 +6,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="card col-xl-2">
-                <p>Lorem ipsum</p>
-            </div>
+{{--            <div class="card col-xl-2">--}}
+{{--                <p>Lorem ipsum</p>--}}
+{{--            </div>--}}
         </div>
         <div>
 
@@ -22,4 +22,5 @@
         @include('inc.product_card')
 
         </div>
+</div>
 @endsection

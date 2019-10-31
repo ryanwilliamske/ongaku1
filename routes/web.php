@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
+//$user = Auth::user();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,19 @@ Route::get('/', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
+ Route::get('/admins', function () {
+     $user = Auth::user();
+     if($user != null){
+         if(($user->role_id)==1){
+             return redirect('http://ongaku.io/admin');
+         }else{
+             return view('noaccess');
+         }
+     }else{
+         return view('auth.login');
+     }
+
+});
 
 Route::get('/login', function () {
     return view('login');
@@ -35,6 +49,33 @@ Route::get('/login', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 });
+Route::get('/companies', function () {
+    $user = Auth::user();
+    if($user != null){
+        if(($user->role_id) == 3){
+            return view('companies.home');
+        }else{
+            return view('noaccess');
+        }
+    }else{
+        return view('auth.login');
+    }
+
+});
+Route::get('/companies/sell', function () {
+    $user = Auth::user();
+    if($user != null){
+        if(($user->role_id) == 3){
+            return view('companies.sell');
+        }else{
+            return view('noaccess');
+        }
+    }else{
+        return view('auth.login');
+    }
+
+});
+
 Route::get('/profile', function () {
     return view('profile');
 });

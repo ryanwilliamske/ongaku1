@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,9 +20,9 @@
     <body class="">
         @include('inc.navbar')
         @include('inc.messages')
-        @include('inc.breadcrumbs')
+{{--        @include('inc.breadcrumbs')--}}
         @yield('content')
-        <footer id="f1" class="container py-5 ">
+        <footer id="f1" class="container py-5" style="width: 100%;">
             @include('inc.footer')
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

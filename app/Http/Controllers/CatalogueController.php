@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 use App\Catalogue;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
 
 class CatalogueController extends Controller
@@ -40,6 +41,32 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'product'=>'required',
+            'price'=>'required',
+            'description'=>'required',
+            'dp'=>'nullable|max:199999'
+        ]);
+//        return 123;
+        if($request->hasFile('dp')){
+            $filenameExt = $request->file('dp')->getClientOriginalName();
+            $filename = pathinfo($filenameExt,PATHINFO_FILENAME);
+            $ext = $request->file('dp')->getClientOriginalExtension();
+            $fileToStore = $filename.'_'.time().'.'.$ext;
+
+            $path = $request->file('dp')->storeAs('public/images',$fileToStore);
+        }else{
+            $fileToStore = 'noimage.jpg';
+        }
+        $catalogue = new Catalogue;
+        $catalogue->productName = $request->input('product');
+        $catalogue->productPrice = $request->input('price');
+        $catalogue->dp = $fileToStore;
+        $catalogue->companyId = $request->input('id');
+        $catalogue->prodDescription = $request->input('description');
+//save the Catalogue
+        $catalogue->save();
+        return redirect('/companies')->with('success','We\'ll send you an email');
 
     }
 
@@ -80,34 +107,39 @@ class CatalogueController extends Controller
 
     public function addToCart($id)
     {
-        $product = Catalogue::find($id);
-        if (!$product) {
-            abort(404);
-        }
-        $cart = session()->get('cart');
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    "name" => $product->productName,
-                    "quantity" => 1,
-                    "price" => $product->productPrice,
-                ]
+        if(Auth::guest()){
+            return view('auth.login')->with('error','You must be logged in!');
+        }else{
+            $product = Catalogue::find($id);
+            if (!$product) {
+                abort(404);
+            }
+            $cart = session()->get('cart');
+            if (!$cart) {
+                $cart = [
+                    $id => [
+                        "name" => $product->productName,
+                        "quantity" => 1,
+                        "price" => $product->productPrice,
+                    ]
+                ];
+                session()->put('cart', $cart);
+                return redirect()->back()->with('success', 'Product added successfully');
+            }
+            if (isset($cart[$id])) {
+                $cart[$id]['quantity']++;
+                session()->put('cart', $cart);
+                return redirect()->back()->with('success', 'Product added successfully');
+            }
+            $cart[$id] = [
+                "name" => $product->productName,
+                "quantity" => 1,
+                "price" => $product->productPrice
             ];
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added successfully');
         }
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added successfully');
-        }
-        $cart[$id] = [
-            "name" => $product->productName,
-            "quantity" => 1,
-            "price" => $product->productPrice
-        ];
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added successfully');
+
     }
 
     public function search(Request $request){

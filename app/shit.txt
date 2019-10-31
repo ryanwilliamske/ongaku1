@@ -1,0 +1,35 @@
+//validations
+
+$this->validate($request, [
+            'onamae'=>'required',
+            'service'=>'required',
+            'email'=>'required',
+            'recordingDate'=>'required',
+            'beat'=>'nullable|max:199999'
+        ]);
+        // return 123;
+
+        // upload a file
+        if($request->hasFile('beat')){
+            $filenameExt = $request->file('beat')->getClientOriginalName();
+            $filename = pathinfo($filenameExt,PATHINFO_FILENAME);
+            $ext = $request->file('beat')->getClientOriginalExtension();
+            $fileToStore = $filename.'_'.time().'.'.$ext;
+
+            $path = $request->file('beat')->storeAs('public/beats',$fileToStore);
+        }else{
+            $fileToStore = 'nobeat.mp3';
+        }
+// Upload
+        $order = new Order;
+        $order->YourName = $request->input('onamae');
+        $order->YourEmail = $request->input('email');
+        $order->Service = $request->input('service');
+        $order->Date = $request->input('recordingDate');
+        $order->beat = $fileToStore;
+        $order->certified = $request->input('certified');
+//save the product
+        $order->save();
+        // print_r($request->input());
+
+        return redirect('/')->with('success','Order Submitted, you\'ll receive an email');
