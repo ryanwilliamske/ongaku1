@@ -70,6 +70,11 @@ class CatalogueController extends Controller
 
     }
 
+//    public function deleteFromCart($id){
+//
+//
+//    }
+
     /**
      * Display the specified resource.
      *
@@ -143,16 +148,10 @@ class CatalogueController extends Controller
     }
 
     public function search(Request $request){
-        // $request->validate([
-        //     'q'=>'required|min:3'
-        // ]
-
-        // );
         $search = $request->input('q');
         $catalogue = Catalogue::where('productName','like','%'.$search.'%')->
-        get();
+                    get();
         return view('products.searchview')->with('catalogue',$catalogue);
-
     }
 
 

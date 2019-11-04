@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use SmoDav\Mpesa\Laravel\Facades\STK;
 
 use App\Order;
 use Illuminate\Http\Request;
@@ -48,17 +49,19 @@ class OrdersController extends Controller
                     $order->productId = $key;
                     $order->save();
                 }
+                $total = 20;
+
+                $response = STK::push($total,254722000000,
+                    "Online Buying Goods",
+                    "Test Payment");
+
+                echo $response;
                 Session::forget('cart');
                 return view('products.thankyou');
             }
         }else{
             return redirect()->back()->with('error','Please load something onto the cart');
         }
-
-
-
-
-
     }
 
     /**
@@ -67,6 +70,10 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function stkpush(){
+        $response = STK::push(600,254703241750,"Online Buying Goods","Test");
+//        echo $response->statusCode();
+    }
     public function show($id)
     {
         //

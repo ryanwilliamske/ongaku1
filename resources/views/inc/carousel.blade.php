@@ -7,21 +7,23 @@ use Illuminate\Support\Facades\Auth;
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      @if((Auth::check())==false)
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      @endif
     </ol>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
       <div class="carousel-item active" style="background-image: url('images/guitar1.jpg')">
         <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4">Hello!</h2>
-          <p class="lead">Welcome to ongaku!</p>
+          <h2 class="display-4">Welcome</h2>
+          <p class="lead">Scroll down to view products</p>
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('images/dj1.jpg')">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="display-4">Great Products</h2>
-          <p class="lead">From well-known companies such as Albeton!</p>
+          <p class="lead">From well-known companies such as Ableton!</p>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->

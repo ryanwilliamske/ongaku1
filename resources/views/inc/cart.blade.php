@@ -17,8 +17,8 @@ $total = 0;
         <div>
         <h6 class="my-0">{{$pr['name']}}</h6>
         </div>
-        <span class="text-muted">{{$pr['price']}}</span>
-        <a href=""><p style="color: red;">Delete</p></a>
+        <span class="text-muted">${{$pr['price']}} x{{$pr['quantity']}}</span>
+        <a href="/delete-item-cart/{{$id}}"><p style="color: red;">Delete</p></a>
 
     </li>
         <?php
@@ -28,25 +28,25 @@ $total = 0;
 @else
     <h1>No  items in your cart</h1>
 @endif
-        <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">-$5</span>
-        </li>
+{{--        <li class="list-group-item d-flex justify-content-between bg-light">--}}
+{{--            <div class="text-success">--}}
+{{--                <h6 class="my-0">Promo code</h6>--}}
+{{--                <small>EXAMPLECODE</small>--}}
+{{--            </div>--}}
+{{--            <span class="text-success">-$5</span>--}}
+{{--        </li>--}}
         <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
             <strong>{{$total}}</strong>
         </li>
     </ul>
 
-    <form class="card p-2">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Promo code">
-            <div class="input-group-append">
-                <button class="btn btn-secondary" type="submit">Redeem</button>
-            </div>
-        </div>
+{{--    <form class="card p-2">--}}
+{{--        <div class="input-group">--}}
+{{--            <input class="form-control" type="text" placeholder="Promo code">--}}
+{{--            <div class="input-group-append">--}}
+{{--                <button class="btn btn-secondary" type="submit">Redeem</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-    </form>
+{{--    </form>--}}

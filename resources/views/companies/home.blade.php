@@ -24,8 +24,8 @@ if (Auth::check()){
                     <div class="row">
                         <div class="card col-sm" style="width: 18rem;">
                             <div class="card-body">
-                            <img width="100" height="100" class="rounded-circle" 
-                                alt="Generic placeholder image" 
+                            <img width="100" height="100" class="rounded-circle"
+                                alt="Generic placeholder image"
                                 src="storage/images/{{$cat->dp}}">
                                 <h5 class="card-title">{{$cat->productName}}</h5>
                                 <a href="/product/{{$cat->productId}}" class="btn btn-dark">View as Buyer</a>
@@ -34,11 +34,10 @@ if (Auth::check()){
                         </div>
                     </div>
                     @else
-                    <p class="lead">You have no items on your catalogue. Why don't you <a href="/companies/sell">start selling?</a></p>
-                  
+
                     @endif
                     @endforeach
- 
+
                     @endif
                 @endforeach
                 </div>

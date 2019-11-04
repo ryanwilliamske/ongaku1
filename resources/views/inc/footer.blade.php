@@ -8,8 +8,8 @@
     <div class="col-6 col-md">
         <h5>Some Vital Links</h5>
         <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="/admins">Ongaku for Admins</a></li>
-            <li><a class="text-muted" href="/companies">Ongaku for Companies</a></li>
+            <li><a class="text-muted" href="/admins" target="_blank">Ongaku for Admins</a></li>
+            <li><a class="text-muted" href="/companies" target="_blank">Ongaku for Companies</a></li>
         </ul>
     </div>
     <div class="col-6 col-md">

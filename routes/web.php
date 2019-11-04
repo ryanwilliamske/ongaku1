@@ -38,7 +38,7 @@ Route::get('/signup', function () {
              return view('noaccess');
          }
      }else{
-         return view('auth.login');
+         return redirect('http://ongaku.io/admin');
      }
 
 });
@@ -81,27 +81,33 @@ Route::get('/profile', function () {
 });
 
 
-
 Route::get('/add-to-cart/{id}',
  'CatalogueController@addToCart');
 
-//Route::get('/remove-item',
-//    function (){
-//
-//    });
+
+// payment
+Route::get('pay','OrdersController@stkpush');
+
+//Ongaku companies delete item
 Route::get('/delete-item/{id}',
  'CatalogueController@destroy');
+
+// buy
 Route::any('buy','OrdersController@store');
+
+//search
 Route::any('search','CatalogueController@search');
-//    function (){
-//    $search = Input::get('search');
-//    $catalogue = \App\Catalogue::where('productName','LIKE','%'.$search.'%')->get();
-//    if(count($catalogue)>0){
-//        return view('products.searchview')->withDetails($catalogue)->withQuery($search);
-//    }else{
-//        return view('products.searchview')->with('alert','Not found, try again');
-//    }
-//});
+
+//delete from cart
+Route::any('delete-item-cart/{$id}', function ($id){
+    $cart = session()->pull('cart');
+    if(($key = array_search($id,$cart)) !== false){
+        unset($cart[$key]);
+    }
+    session()->put('cart',$cart);
+    return view('checkout')->with('success','Deleted');
+});
+
 
 Route::resource('product','CatalogueController');
 

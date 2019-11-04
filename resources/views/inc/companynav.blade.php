@@ -15,9 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/companies/sell">Sell</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://ongaku.io">Ongaku</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="http://ongaku.io">Ongaku</a>--}}
+{{--                </li>--}}
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

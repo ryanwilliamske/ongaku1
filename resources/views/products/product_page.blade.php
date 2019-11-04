@@ -8,6 +8,7 @@ $company = Company::all();
 // $product = Catalogue;
 ?>
 <h1 class="text-center">{{$product->productName}}</h1>
+
     <div class="jumbotron container">
         <div class="row">
             <div class="col-xl-5">
@@ -20,6 +21,7 @@ $company = Company::all();
                     }
                     readMore()"></p>
                 <p class="col-xs-6">{{$product->prodDescription}}</p>
+                <p>Price: ${{$product->productPrice}}</p>
                 <a href="/add-to-cart/{{$product->productId}}" style="width: 100%" class="btn btn-lg btn-dark">Add to Cart</a>
             </div>
         </div>
@@ -36,7 +38,7 @@ $company = Company::all();
                         <div class="card-body">
                             <img width="140" height="140" class="rounded-circle"
                                  alt="Generic placeholder image"
-                                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+                                 src="storage/images{{$product->dp}}">
 
                             <h5 class="card-title">{{$product->productName}}</h5>
                         <!-- <small>{{$product->prodDescription}}</small> -->
@@ -57,7 +59,7 @@ $company = Company::all();
                 <div class="card-body">
                     <img width="140" height="140" class="rounded-circle"
                          alt="Generic placeholder image"
-                         src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+                         src="storage/images{{$product->dp}}">
 
                     <h5 class="card-title">{{$product->productName}}</h5>
                 <!-- <small>{{$product->prodDescription}}</small> -->
