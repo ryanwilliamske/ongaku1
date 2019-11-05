@@ -29,6 +29,10 @@ Route::get('/', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
+
+Route::get('/explore', function () {
+    return view('explore');
+});
  Route::get('/admins', function () {
      $user = Auth::user();
      if($user != null){
@@ -40,7 +44,6 @@ Route::get('/signup', function () {
      }else{
          return redirect('http://ongaku.io/admin');
      }
-
 });
 
 Route::get('/login', function () {
@@ -83,6 +86,10 @@ Route::get('/profile', function () {
 
 Route::get('/add-to-cart/{id}',
  'CatalogueController@addToCart');
+Route::get('/clear-cart', function (){
+    session()->forget('cart');
+    return redirect()->back()->with('error', 'Cart Cleared');
+});
 
 
 // payment
@@ -98,15 +105,14 @@ Route::any('buy','OrdersController@store');
 //search
 Route::any('search','CatalogueController@search');
 
-//delete from cart
-Route::any('delete-item-cart/{$id}', function ($id){
-    $cart = session()->pull('cart');
-    if(($key = array_search($id,$cart)) !== false){
-        unset($cart[$key]);
-    }
-    session()->put('cart',$cart);
-    return view('checkout')->with('success','Deleted');
-});
+
+Route::get('/delete-item-cart/{id}',
+    'CatalogueController@deleteFromCart');
+
+Route::get('/add-item-cart/{id}',
+    'OrdersController@plusOne');
+Route::get('/remove-item-cart/{id}',
+    'OrdersController@minusOne');
 
 
 Route::resource('product','CatalogueController');
@@ -114,6 +120,7 @@ Route::resource('product','CatalogueController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/company/{id}', 'CompanyController@index');
 
 
 Route::group(['prefix' => 'admin'], function () {

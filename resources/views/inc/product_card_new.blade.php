@@ -3,7 +3,7 @@ use App\Catalogue;
 $products = Catalogue::all();
 ?>
 @if(count($products)>1)
-    @foreach($products as $product)
+    @foreach($products->sortByDesc('created_at') as $product)
     <div class="text-center">
         <div class="card" style="width: 18rem;">
             <div class="card-body">

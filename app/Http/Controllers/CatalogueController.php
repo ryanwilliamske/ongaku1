@@ -10,17 +10,11 @@ use Symfony\Component\Console\Input\Input;
 
 class CatalogueController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Catalogue::all();
         $company=Company::pluck('companyName','companyId');
         return view('products.product_page',compact('products','company'));
-
     }
 
     /**
@@ -64,16 +58,22 @@ class CatalogueController extends Controller
         $catalogue->dp = $fileToStore;
         $catalogue->companyId = $request->input('id');
         $catalogue->prodDescription = $request->input('description');
-//save the Catalogue
+
         $catalogue->save();
         return redirect('/companies')->with('success','Your product is now live for sale');
-
     }
 
-//    public function deleteFromCart($id){
-//
-//
-//    }
+    public function deleteFromCart(Request $request){
+        if($request->id){
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])){
+                unset($cart[$request->id]);
+                session()->put('cart',$cart);
+            }
+            session()->flash('success','Product removed successfully');
+            return view('checkout');
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -95,7 +95,7 @@ class CatalogueController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -144,7 +144,6 @@ class CatalogueController extends Controller
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added successfully');
         }
-
     }
 
     public function search(Request $request){

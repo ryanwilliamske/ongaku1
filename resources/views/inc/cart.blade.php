@@ -8,19 +8,25 @@ $total = 0;
 
     <h4 class="d-flex justify-content-between align-items-center mb-3">
     <span class="text-muted">Your cart</span>
+    <a class="small" href="/clear-cart">Remove everything</a>
 {{--    <span class="badge badge-secondary badge-pill">2</span>--}}
     </h4>
 @if(session('cart'))
     <ul class="list-group mb-3">
  @foreach(session('cart') as $id=>$pr)
+
     <li class="list-group-item d-flex justify-content-between lh-condensed">
         <div>
         <h6 class="my-0">{{$pr['name']}}</h6>
         </div>
         <span class="text-muted">${{$pr['price']}} x{{$pr['quantity']}}</span>
-        <a href="/delete-item-cart/{{$id}}"><p style="color: red;">Delete</p></a>
-
+        <a href="/add-item-cart/{{$id}}"><p style="color: green;">+1</p></a>
+        @if($pr['quantity'] != 1)
+            <a href="/remove-item-cart/{{$id}}"><p style="color: red;">-1</p></a>
+        @endif
+        <a href="/delete-item-cart/{{$id}}"><p style="color: darkred;">Delete</p></a>
     </li>
+
         <?php
         ?>
     {{$total += $pr['price'] * $pr['quantity'] }}

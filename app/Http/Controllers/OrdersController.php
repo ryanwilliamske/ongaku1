@@ -43,19 +43,19 @@ class OrdersController extends Controller
             if(Auth::guest()){
                 return redirect('login');
             }else{
+                $total = 0;
                 foreach ($cart as $key => $value) {
                     $order = new Order;
                     $order->id = Auth::id();
                     $order->productId = $key;
                     $order->save();
+                    $total = $cart[$key]['price'] * $cart[$key]['quantity'] * 100;
                 }
-                $total = 20;
-
-                $response = STK::push($total,254722000000,
+                $response = STK::push($total ,254719601932,
                     "Online Buying Goods",
                     "Test Payment");
-
-                echo $response;
+//
+//                echo $response;
                 Session::forget('cart');
                 return view('products.thankyou');
             }
@@ -70,10 +70,10 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function stkpush(){
-        $response = STK::push(600,254703241750,"Online Buying Goods","Test");
-//        echo $response->statusCode();
-    }
+//    public function stkpush(){
+//        $response = STK::push(600,254703241750,"Online Buying Goods","Test");
+//
+//    }
     public function show($id)
     {
         //
@@ -87,9 +87,31 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
 
+    }
+    public function plusOne(Request $request){
+        if($request->id){
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])){
+                $cart[$request->id]['quantity'] = $cart[$request->id]['quantity'] + 1 ;
+                session()->put('cart',$cart);
+            }
+        }
+        session()->flash('success','Added item');
+        return view('checkout');
+    }
+    public function minusOne(Request $request){
+        if($request->id){
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])){
+                $qt = $cart[$request->id]['quantity'];
+                $cart[$request->id]['quantity'] = $qt - 1;
+                session()->put('cart',$cart);
+            }
+        }
+        session()->flash('success','One item removed');
+        return view('checkout');
+    }
     /**
      * Update the specified resource in storage.
      *

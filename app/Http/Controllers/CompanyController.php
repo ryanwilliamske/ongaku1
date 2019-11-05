@@ -15,7 +15,7 @@ class CompanyController extends Controller
     public function index()
     {
         $company = Company::all();
-        return view('admin.verify')->with('company',$company);
+        return view('company_page')->with('company',$company);
     }
 
     /**

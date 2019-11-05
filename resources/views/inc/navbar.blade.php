@@ -14,11 +14,15 @@
                     <ul class="navbar-nav mr-auto">
                     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home </a>
       </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/explore">Explore</a>
+        </li>
       <li class="nav-item">
         <a class="nav-link" href="/about">About</a>
       </li>
+
     @if(session('cart'))
         <li class="nav-item">
             <a class="nav-link" href="/checkout">Checkout ({{count(session('cart'))}}) </a>
@@ -32,7 +36,7 @@
     <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
         <form action="/search" method="post" class="form-inline my-2 my-lg-0">
             {{csrf_field()}}
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" role="search" name="q" value="{{ request()->input('q') }}" aria-label="Search">
+            <input class="form-control mr-sm-2 search" type="text" placeholder="Search" role="search" name="q" value="{{ request()->input('q') }}" aria-label="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

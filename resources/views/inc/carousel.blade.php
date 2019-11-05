@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;
+use App\Catalogue;
+$catalogue = Catalogue::all();
 ?>
 
 <header>
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       @endif
     </ol>
+      @if((Auth::check())==false)
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
       <div class="carousel-item active" style="background-image: url('images/guitar1.jpg')">
@@ -27,12 +30,38 @@ use Illuminate\Support\Facades\Auth;
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
-      @if((Auth::check())==false)
+
       <div class="carousel-item" style="background-image: url('images/studio1.jpg')">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="display-4"><a href="{{ route('register') }}">Join now</a>!</h2>
         </div>
       </div>
+        @else
+            @foreach($catalogue as $cat)
+                <div class="carousel-item" style="background-image: url('/storage/images/{{$cat->dp}}')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class="display-4">Latest release</h2>
+                        <p class="lead">{{$cat->productName}}</p>
+                    </div>
+                </div>
+                @if(count($catalogue)>1)
+                    @break
+                @endif
+            @endforeach
+    <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('images/dj1.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="display-4">Latest release</h2>
+                <p class="lead">From well-known companies such as Ableton!</p>
+            </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+
+        <div class="carousel-item" style="background-image: url('images/studio1.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="display-4"><a href="{{ route('register') }}">Join now</a>!</h2>
+            </div>
+        </div>
       @endif
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

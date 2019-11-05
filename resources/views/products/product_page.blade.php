@@ -22,6 +22,11 @@ $company = Company::all();
                     readMore()"></p>
                 <p class="col-xs-6">{{$product->prodDescription}}</p>
                 <p>Price: ${{$product->productPrice}}</p>
+                @foreach($company as $ca)
+                    @if(($product->companyId)==($ca->companyId))
+                        <p><em>By: <a href="/company/{{$ca->companyId}}">{{$ca->companyName}}</a></em></p>
+                    @endif
+                @endforeach
                 <a href="/add-to-cart/{{$product->productId}}" style="width: 100%" class="btn btn-lg btn-dark">Add to Cart</a>
             </div>
         </div>
