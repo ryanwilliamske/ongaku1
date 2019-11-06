@@ -120,7 +120,7 @@ Route::resource('product','CatalogueController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/company/{id}', 'CompanyController@index');
+Route::resource('company', 'CompanyController');
 
 
 Route::group(['prefix' => 'admin'], function () {

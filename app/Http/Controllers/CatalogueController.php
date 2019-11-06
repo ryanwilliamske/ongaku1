@@ -6,6 +6,8 @@ use App\Company;
 use Illuminate\Http\Request;
 use App\Catalogue;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Spatie\Searchable\Search;
 use Symfony\Component\Console\Input\Input;
 
 class CatalogueController extends Controller
@@ -148,9 +150,10 @@ class CatalogueController extends Controller
 
     public function search(Request $request){
         $search = $request->input('q');
-        $catalogue = Catalogue::where('productName','like','%'.$search.'%')->
-                    get();
+        $catalogue = DB::table('catalogues')->where('productName','like','%'.$search.'%')
+                                                ->get();
         return view('products.searchview')->with('catalogue',$catalogue);
+
     }
 
 

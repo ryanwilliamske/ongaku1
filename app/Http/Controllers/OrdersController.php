@@ -54,10 +54,11 @@ class OrdersController extends Controller
                 $response = STK::push($total ,254719601932,
                     "Online Buying Goods",
                     "Test Payment");
-//
-//                echo $response;
-                Session::forget('cart');
-                return view('products.thankyou');
+
+                    $msg = $response->ResponseDescription;
+                    Session::forget('cart');
+                    return view('products.thankyou')->with('Success',$msg);
+
             }
         }else{
             return redirect()->back()->with('error','Please load something onto the cart');

@@ -18,15 +18,15 @@
     <link rel="stylesheet" href="/css/app.css">
     <style>
         .carousel-item {
-        height: 100vh;
-        min-height: 350px;
+        height: 93vh;
+        min-height: 250px;
         background: no-repeat center center scroll;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
         }
-    
+
     </style>
     </head>
     <body class="">

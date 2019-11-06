@@ -22,7 +22,7 @@ $random = rand(1,5)
             </tr>
         </thead>
         <tbody>
-        @foreach($catalogue as $cat)
+        @foreach($catalogue->sortByDesc('created_at') as $cat)
             <tr>
             <td><a href="/product/{{$cat->productId}}">{{$cat->productName}}</a></td>
             <td>{{$cat->productPrice}}</td>
@@ -34,3 +34,4 @@ $random = rand(1,5)
     </div>
 </div>
 <div>
+</div>

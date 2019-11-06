@@ -25,7 +25,7 @@ $catalogue = Catalogue::all();
       <!-- Slide Two - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('images/dj1.jpg')">
         <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4">Great Products</h2>
+          <h2 class="display-4" style="color: white;">Great Products</h2>
           <p class="lead">From well-known companies such as Ableton!</p>
         </div>
       </div>

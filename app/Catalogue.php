@@ -5,8 +5,10 @@ namespace App;
 //use Spatie\Searchable\Searchable;
 //use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Catalogue extends Model
+class Catalogue extends Model implements Searchable
 //    implements Searchable
 {
     public $table = 'catalogues';
@@ -21,4 +23,14 @@ class Catalogue extends Model
 //        $url = route('');
 //        // TODO: Implement getSearchResult() method.
 //    }
+    public function getSearchResult(): SearchResult
+    {
+//        $url = route('/search',$this->primaryKey);
+        return new SearchResult(
+            $this,
+            $this->productName,$this->dp
+//            $url
+        );
+        // TODO: Implement getSearchResult() method.
+    }
 }
